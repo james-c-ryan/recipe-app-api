@@ -4,6 +4,9 @@ services:
   app:
     build:
       context: .
+      args:
+        http_proxy: $HTTP_PROXY
+        https_proxy: $HTTPS_PROXY
     ports:
       - "8080:8080"
     volumes:

@@ -1,9 +1,12 @@
+# command for ----  docker build --build-arg http_proxy=$env:HTTP_PROXY --build-arg https_proxy=$env:HTTPS_PROXY .
 FROM python:3.7-alpine
 MAINTAINER Annliz Ltd
 
 ENV PYTHONUNBUFFERED 1
-ENV HTTP_PROXY http://docker.for.win.localhost:3128
-ENV HTTPS_PROXY http://docker.for.win.localhost:3128
+ARG http_proxy
+ARG https_proxy
+
+ENV HTTP_PROXY=$http_proxy HTTPS_PROXY=$https_proxy
 
 COPY ./requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
